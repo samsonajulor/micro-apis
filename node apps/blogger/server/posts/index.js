@@ -1,10 +1,12 @@
 import express from 'express';
-import pkg from 'body-parser';
-import { randomBytes } from 'crypto';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
-const { json } = pkg;
+const { json } = bodyParser;
+
 const app = express();
 app.use(json());
+app.use(cors());
 
 const posts = {};
 
