@@ -1,4 +1,5 @@
 import express from 'express';
+import { randomBytes } from 'crypto';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
@@ -20,7 +21,7 @@ app.post('/posts', (req, res) => {
 
   posts[id] = {
     id,
-    title
+    title,
   };
 
   res.status(201).send(posts[id]);
