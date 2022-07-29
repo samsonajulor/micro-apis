@@ -2,6 +2,7 @@ import express from 'express';
 import { randomBytes } from 'crypto';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import axios from 'axios';
 
 const { json } = bodyParser;
 
@@ -15,7 +16,7 @@ app.get('/posts/:id/comments', (req, res) => {
   res.send(commentsByPostId[req.params.id] || []);
 });
 
-app.post('/posts/:id/comments', (req, res) => {
+app.post('/posts/:id/comments', async (req, res) => {
   const commentId = randomBytes(4).toString('hex');
   const { content } = req.body;
 
