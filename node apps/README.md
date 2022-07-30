@@ -17,3 +17,14 @@ Each service has been containerized.
   to delete a deployment by name, use: "kubectl delete deployment <deployment name>"
 
   to get pods created by a deployment, use: "kubectl get pods"
+
+  to check the status of a pod i.e. which pod it is listening on, use: "kubectl logs <pod name from the get pods command>"
+
+- How to Update Images used by a deployment
+ 1. Make sure that the deployment is using a latest tag
+ 2. Update the code
+ 3. Build the image using the command: "docker build -t <image name>"
+ 4. Push the image to docker hub using the command: "docker push <image name>"
+ 5. Run the command: "kubectl rollout restart deployment <deployment name>"
+
+
