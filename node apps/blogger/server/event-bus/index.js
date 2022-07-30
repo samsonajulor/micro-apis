@@ -7,8 +7,14 @@ const { json } = bodyParser;
 const app = express();
 app.use(json());
 
+// events database for all events that ever existed so no data is lost when any server is down.
+const events = []
+
 app.post("/events", (req, res) => {
   const event = req.body;
+
+  // store event in database
+  events.push(event);
 
   // send event to the post service
   axios.post('http://localhost:4000/events', event).catch((err) => {
@@ -31,6 +37,13 @@ app.post("/events", (req, res) => {
   });
 
   res.send({ status: 'OK' });
+});
+
+/**
+ * get all events from the database
+ */
+app.get('/events', (req, res) => {
+  res.send(events);
 });
 
 app.listen(4005, () => {
