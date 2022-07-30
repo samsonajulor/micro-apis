@@ -20,10 +20,16 @@ app.post("/events", (req, res) => {
     console.log(err.message, 'error from the comments event');
   });
 
+  // send event to the moderation service
+  axios.post('http://localhost:4002/events', event).catch((err) => {
+    console.log(err.message);
+  });
+
   // send event to the query service
   axios.post('http://localhost:4006/events', event).catch((err) => {
     console.log(err.message, 'error from the query event');
   });
+
   res.send({ status: 'OK' });
 });
 
