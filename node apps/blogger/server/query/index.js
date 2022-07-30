@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const { json } = bodyParser;
-
 const app = express();
 app.use(json());
 app.use(cors());
@@ -35,6 +34,6 @@ app.post('/events', (req, res) => {
   res.send({});
 });
 
-app.listen(4005, () => {
-  console.log('Listening on 4005');
+app.listen(4006, () => {
+  console.log('Listening on 4006');
 });
