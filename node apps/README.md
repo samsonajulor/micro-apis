@@ -36,15 +36,35 @@ Each service has been containerized.
  4. Create the cluster ip service.
 
 - How to Update Images used by a deployment
+
  1. Make sure that the deployment is using a latest tag
 
  2. Update the code
 
- 3. Build the image using the command: "docker build -t <image name>"
+ 3. Build the image using the command: "docker build -t <image name> ."
 
  4. Push the image to docker hub using the command: "docker push <image name>"
 
  5. Run the command: "kubectl rollout restart deployment <deployment name>"
+
+
+- ErrImagePull, ErrImageNeverPull and ImagePullBackoff Errors
+
+If your pods are showing ErrImagePull, ErrImageNeverPull, or ImagePullBackOff errors after running kubectl apply, the simplest solution is to provide an imagePullPolicy to the pod.
+
+First, run "run kubectl delete -f <directory>" e.g. "kubectl delete -f ./"
+
+Then, update your pod manifest:
+
+   spec:
+     containers:
+       - name: posts
+         image: cygnet/posts:0.0.1
+         imagePullPolicy: Never
+
+Then, "run kubectl apply -f <directory>" e.g. "run kubectl apply -f ./"
+
+This will ensure that Kubernetes will use the image built locally from your image cache instead of attempting to pull from a registry.
 
 
 

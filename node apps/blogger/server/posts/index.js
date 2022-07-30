@@ -24,13 +24,13 @@ app.post('/posts', async (req, res) => {
     id,
     title,
   };
-    await axios.post('http://localhost:4005/events', {
-    type: 'PostCreated',
-    data: {
-      id,
-      title
-    }
-  });
+    await axios.post('http://eventbus-clusterip-srv:4005/events', {
+      type: 'PostCreated',
+      data: {
+        id,
+        title,
+      },
+    });
 
   res.status(201).send(posts[id]);
 });
