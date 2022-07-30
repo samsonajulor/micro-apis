@@ -36,6 +36,7 @@ Each service has been containerized.
  4. Create the cluster ip service.
 
 - How to Update Images used by a deployment
+
  1. Make sure that the deployment is using a latest tag
 
  2. Update the code
