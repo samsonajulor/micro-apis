@@ -25,6 +25,16 @@ Each service has been containerized.
 
  To check the status of a pod i.e. which pod it is listening on, use: "kubectl logs <pod name from the get pods command>"
 
+- How to Create a deployment
+
+ 1. Build the image using the command: "docker build -t <image name>"
+
+ 2. Push the image to docker hub using the command: "docker push <image name>"
+
+ 3. Create the deployment configuration file and apply it using the command: "k apply -f <name of deployment configuration file>".
+ 
+ 4. Create the cluster ip service.
+
 - How to Update Images used by a deployment
  1. Make sure that the deployment is using a latest tag
 
@@ -35,6 +45,6 @@ Each service has been containerized.
  4. Push the image to docker hub using the command: "docker push <image name>"
 
  5. Run the command: "kubectl rollout restart deployment <deployment name>"
- 
+
 
 

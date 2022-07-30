@@ -1,3 +1,5 @@
+# this is a node port for local services.
+
 apiVersion: v1
 kind: Service
 metadata:

@@ -15,3 +15,16 @@ spec:
       containers:
         - name: eventbus
           image: node/blogger/eventbus
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eventbus-clusterip-srv
+spec:
+  selector:
+    app: eventbus
+  ports:
+    - name: eventbus
+      protocol: TCP
+      port: 4005
+      targetPort: 4005
