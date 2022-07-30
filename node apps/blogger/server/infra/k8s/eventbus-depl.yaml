@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: eventbus
-          image: node/blogger/eventbus
+          image: node/blogger/event-bus
+          imagePullPolicy: Never
 ---
 apiVersion: v1
 kind: Service
