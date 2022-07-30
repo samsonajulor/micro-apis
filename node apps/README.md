@@ -10,6 +10,8 @@ Each service has been containerized.
  To start a kubernetes cluster, run the following command from the required infra/k8s:
   "k apply -f <name of deployment configuration file>" e.g. "k apply -f posts-depl.yaml"
 
+  to get all services use: "kubectl get services"
+
   to get all deployments use: "kubectl get deployments"
 
   to describe a deployment by name, use: "kubectl describe deployment <deployment name>"
