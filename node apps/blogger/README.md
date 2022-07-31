@@ -6,22 +6,22 @@ _To create an image run the following command:_
 _To start the container, run the following command:_
   "docker run <name of the image >"
 
- To start a kubernetes cluster, run the following command from the required infra/k8s:
-  "k apply -f <name of deployment configuration file>" e.g. "k apply -f posts-depl.yaml"
+_To start a kubernetes cluster, run the following command from the required infra/k8s:_
+"k apply -f <name of deployment configuration file>" e.g. "k apply -f posts-depl.yaml"
 
- To get all services use: "kubectl get services"
+_To get all services use:_ "kubectl get services"
 
- To get all deployments use: "kubectl get deployments"
+_To get all deployments use:_ "kubectl get deployments"
 
- To describe a deployment by name, use: "kubectl describe deployment <deployment name>"
-  
- To delete a deployment by name, use: "kubectl delete deployment <deployment name>"
+_To describe a deployment by name, use:_ "kubectl describe deployment <deployment name>"
 
- To get pods created by a deployment, use: "kubectl get pods"
+_To delete a deployment by name, use:_ "kubectl delete deployment <deployment name>"
 
- To check the status of a pod i.e. which pod it is listening on, use: "kubectl logs <pod name from the get pods command>"
+_To get pods created by a deployment, use:_ "kubectl get pods"
 
-- How to Create a deployment
+_To check the status of a pod i.e. which pod it is listening on, use:_ "kubectl logs <pod name from the get pods command>"
+
+**How to Create a deployment**
 
  1. Build the image using the command: "docker build -t <image name>"
 
@@ -31,7 +31,7 @@ _To start the container, run the following command:_
  
  4. Create the cluster ip service.
 
-- How to Update Images used by a deployment
+**How to Update Images used by a deployment**
 
  1. Make sure that the deployment is using a latest tag
 
@@ -43,14 +43,13 @@ _To start the container, run the following command:_
 
  5. Run the command: "kubectl rollout restart deployment <deployment name>"
 
-
-- ErrImagePull, ErrImageNeverPull and ImagePullBackoff Errors
+**ErrImagePull, ErrImageNeverPull and ImagePullBackoff Errors**
 
 If your pods are showing ErrImagePull, ErrImageNeverPull, or ImagePullBackOff errors after running kubectl apply, the simplest solution is to provide an imagePullPolicy to the pod.
 
-First, run "run kubectl delete -f <directory>" e.g. "kubectl delete -f ./"
+1. First, run "run kubectl delete -f <directory>" e.g. "kubectl delete -f ./"
 
-Then, update your pod manifest:
+2. Then, update your pod manifest:
 
    spec:
      containers:
@@ -58,7 +57,7 @@ Then, update your pod manifest:
          image: cygnet/posts:0.0.1
          imagePullPolicy: Never
 
-Then, "run kubectl apply -f <directory>" e.g. "run kubectl apply -f ./"
+3. Then, "run kubectl apply -f <directory>" e.g. "run kubectl apply -f ./"
 
 This will ensure that Kubernetes will use the image built locally from your image cache instead of attempting to pull from a registry.
 
