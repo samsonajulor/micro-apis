@@ -1,31 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eventbus-depl
+  name: event-bus-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eventbus
+      app: event-bus
   template:
     metadata:
       labels:
-        app: eventbus
+        app: event-bus
     spec:
       containers:
-        - name: eventbus
-          image: node/blogger/event-bus
-          imagePullPolicy: Never
+        - name: event-bus
+          image: cygnetops/event-bus-85
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: eventbus-clusterip-srv
+  name: event-bus-srv
 spec:
   selector:
-    app: eventbus
+    app: event-bus
   ports:
-    - name: eventbus
+    - name: event-bus
       protocol: TCP
       port: 4005
       targetPort: 4005

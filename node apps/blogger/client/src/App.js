@@ -1,6 +1,6 @@
 import React from "react";
-import PostCreate from "./components/PostCreate";
-import PostList from './components/PostList';
+import PostCreate from "./PostCreate";
+import PostList from "./PostList";
 
 const App = () => {
   return (

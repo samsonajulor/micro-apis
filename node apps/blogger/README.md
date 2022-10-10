@@ -11,6 +11,8 @@
 - A comment moderated event is sent from the comment service to the events service.
 - Finally, the updated comment is sent to the query service post/event route  from the event service.
 
+### to create an alias
+`code ~/.bashrc` or  `code ~/.zshrc`
 ## kubernetes terms
 1. cluster: a collection of nodes + a master to manage them
 
@@ -24,7 +26,7 @@
 
 6. objects: a collection of deployments, pods and services created via a YAML config file. 
 
-PS: The YAML config file acts a documentation to tell other engineers what is going on in each service. 
+PS: The YAML config file acts a documentation to tell other engineers what is going on in each service.
 
 **DO NOT CREATE OBJECTS DIRECTLY FROM THE TERMINAL. USE THE YAML CONFIG FILE ALWAYS**
 
@@ -70,7 +72,7 @@ _To check the status of a pod i.e. which pod it is listening on, use:_ `kubectl 
 
 **How to Create a deployment**
 
- 1. Build the image using the command: `docker build -t <image name>`
+ 1. Build the image using the command: `docker build -t <image name> .`
 
  2. Push the image to docker hub using the command: `docker push <image name>`
 
@@ -90,7 +92,7 @@ _To check the status of a pod i.e. which pod it is listening on, use:_ `kubectl 
 
  5. Run the command: `kubectl rollout restart deployment <deployment name>`
 
-**ErrImagePull, ErrImageNeverPull and ImagePullBackoff Errors**
+**how to solve ErrImagePull, ErrImageNeverPull and ImagePullBackoff Errors**
 
 If your pods are showing ErrImagePull, ErrImageNeverPull, or ImagePullBackOff errors after running kubectl apply, the simplest solution is to provide an imagePullPolicy to the pod.
 
@@ -112,6 +114,15 @@ This will ensure that Kubernetes will use the image built locally from your imag
 1. sync with the post and comments services to get all posts and comments on initializing the service
 2. or get all comments and posts directly from the respective databases.
 3. or the event bus stores events internally in a database and sends them to the query service anytime it comes back online.
+
+### types of services
+1. cluster ip: this sets up an easy-to-remember url to access a pod. It onlu exposes pods to other pods in the cluster
+
+2. Node port: This makes the pod accessible from outside the cluster. It is used during development
+
+3. Load Balancer: It makes the pod accessible from outside the cluster. It is used in production.
+
+4. External Name: It redirects an in-cluster request to a CNAME url.
 
 
 
