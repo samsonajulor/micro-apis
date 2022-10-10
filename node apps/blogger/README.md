@@ -1,3 +1,16 @@
+## architecture
+- The client/react-app communicates with the posts and comments service to create posts and comments
+- The post service has two routes to create and list all posts
+- The comment service has two routes to create and list all comments
+- The events service listens for events on the comments and post service which are referred to as listeners and in this case post request. It then publishes them again to listeners.
+- The events service sends post and comment created events to the query service in a data structure.
+- The query service has two endpoints. 1. posts/events will be called by the events service to create the list of posts 2. get/posts will be called by the client to retrieve the list of posts created
+- The client/react app communicates with the query service to retrieve posts and comments.
+- the moderation service retrieves created comments from the events service and checks if it contains the unapproved results. It returns the a commentCreated events.
+- The event service sends the comment moderation event to the comment service which then updates the global state of the comment in the post.
+- A comment moderated event is sent from the comment service to the events service.
+- Finally, the updated comment is sent to the query service post/event route  from the event service.
+
 **Instructions**
 
 _To create an image run the following command:_
@@ -60,6 +73,11 @@ If your pods are showing ErrImagePull, ErrImageNeverPull, or ImagePullBackOff er
 3. Then, "run kubectl apply -f <directory>" e.g. "run kubectl apply -f ./"
 
 This will ensure that Kubernetes will use the image built locally from your image cache instead of attempting to pull from a registry.
+
+### handling missing events when the query service goes down
+1. sync with the post and comments services to get all posts and comments on initializing the service
+2. or get all comments and posts directly from the respective databases.
+3. or the event bus stores events internally in a database and sends them to the query service anytime it comes back online.
 
 
 
