@@ -33,7 +33,7 @@ PS: The YAML config file acts a documentation to tell other engineers what is go
 **Instructions**
 
 _To create an image run the following command:_
-docker build -t <name of the container>` e.g `docker build -t posts:0.0.1 .`
+`docker build -t <name of the container>` e.g `docker build -t posts:0.0.1 .`
 
 _To start the container, run the following command:_
   `docker run <name of the image >`
